@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="321套考研数学试卷本地刷题工具" />
+    <meta name="theme-color" content="#10213b" />
+    <title>研数 · 321 套刷题台</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2310213b'/%3E%3Cpath d='M16 16h32v8H16zm0 16h20v8H16zm0 16h32v4H16z' fill='%23fff'/%3E%3Ccircle cx='47' cy='36' r='8' fill='%2325b9c2'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="vendor/katex.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar" aria-label="试卷选择">
+        <div class="brand-row">
+          <div class="brand-mark" aria-hidden="true">Σ</div>
+          <div>
+            <strong>研数刷题台</strong>
+            <span>321 套本地题库</span>
+          </div>
+          <button class="icon-button sidebar-close" id="closeSidebar" aria-label="关闭试卷选择">×</button>
+        </div>
+
+        <div class="filter-stack">
+          <label>系列<select id="seriesSelect"></select></label>
+          <div class="filter-row">
+            <label>年份<select id="yearSelect"></select></label>
+            <label>科目<select id="subjectSelect"></select></label>
+          </div>
+          <label>试卷<select id="paperSelect"></select></label>
+        </div>
+
+        <div class="paper-summary">
+          <div><span>当前进度</span><strong id="progressText">0 / 0</strong></div>
+          <div class="progress-track" aria-hidden="true"><i id="progressBar"></i></div>
+        </div>
+
+        <nav class="question-grid" id="questionGrid" aria-label="题号"></nav>
+
+        <div class="legend">
+          <span><i class="dot current"></i>当前</span>
+          <span><i class="dot done"></i>已掌握</span>
+          <span><i class="dot answered"></i>已作答</span>
+        </div>
+      </aside>
+
+      <div class="sidebar-scrim" id="sidebarScrim"></div>
+
+      <main class="main">
+        <header class="topbar">
+          <button class="icon-button menu-button" id="openSidebar" aria-label="打开试卷选择">☰</button>
+          <div class="paper-title">
+            <span id="paperMeta">正在载入题库…</span>
+            <strong id="paperTitle">考研数学刷题台</strong>
+          </div>
+          <button class="ghost-button" id="randomButton" title="随机抽取当前试卷中的一道题">随机一题</button>
+        </header>
+
+        <section class="question-stage" aria-live="polite">
+          <article class="question-card" id="questionCard">
+            <div class="question-head">
+              <div class="question-index"><span id="questionNumber">01</span><small id="questionSection">选择题</small></div>
+              <div class="question-actions">
+                <span class="points" id="questionPoints">5 分</span>
+                <button class="icon-button" id="favoriteButton" aria-label="收藏此题" title="收藏此题">☆</button>
+              </div>
+            </div>
+
+            <div class="question-body math-content" id="questionBody"></div>
+            <div class="figure-area" id="figureArea"></div>
+            <div class="choices" id="choices"></div>
+            <div class="subparts math-content" id="subparts"></div>
+
+            <div class="question-footer">
+              <button class="secondary-button" id="prevButton">← 上一题</button>
+              <button class="master-button" id="masterButton">标记已掌握</button>
+              <button class="primary-button" id="nextButton">下一题 →</button>
+            </div>
+          </article>
+
+          <section class="note-card">
+            <label for="noteInput">本题笔记 <span>自动保存在此设备</span></label>
+            <textarea id="noteInput" rows="3" placeholder="记下易错点、关键步骤或待复习内容…"></textarea>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="vendor/katex.min.js"></script>
+    <script src="papers-data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
